@@ -41,7 +41,7 @@ class AuthController extends Controller
             $newUser->password = $password;
             $newUser->save();
 
-            $token = auth()->attempt([
+            $token = Auth::attempt([
                 'cpf' => $cpf,
                 'password' => $request->input('password')
             ]);
@@ -79,7 +79,7 @@ class AuthController extends Controller
         if(!$validator->fails()){
             $cpf        = $request->input('cpf');
             $password   = $request->input('password');
-            $token = auth()->attempt([
+            $token = Auth::attempt([
                 'cpf' => $cpf,
                 'password' => $request->input('password')
             ]);
@@ -121,7 +121,7 @@ class AuthController extends Controller
     public function logout(){
         $array = ['error' => ''];
 
-        auth()->logout();
+        Auth::logout();
         
         return $array;
     }
